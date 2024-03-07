@@ -2,7 +2,7 @@ package model
 
 type Word struct {
 	Text    string `json:"text"`
-	Enabled bool   `json:"enabled"`
+	Checked bool   `json:"checked"`
 }
 
 type Game struct {

@@ -109,7 +109,7 @@ func (gc *GameCache) Game(c echo.Context) error {
 					}
 					for j, word := range row {
 						if id == (j+1)*(i+1) {
-							word.Enabled = enable
+							word.Checked = enable
 						}
 					}
 				}
