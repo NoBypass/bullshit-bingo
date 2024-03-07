@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Headings */
+h1 {
+  font-size: 2rem; 
+  margin: 1.5em 0;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 1em 0;
+  font-weight: bold;
+}
+
+/* Paragraphs */
+p {
+  margin: 1em 0;
+}
