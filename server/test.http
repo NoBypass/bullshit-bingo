@@ -15,3 +15,6 @@ POST http://localhost:1234/topic/politics
 
 ### Get all topics
 GET http://localhost:1234/topics
+
+### Create game
+POST http://localhost:1234/create

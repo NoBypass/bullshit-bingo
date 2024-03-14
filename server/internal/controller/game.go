@@ -35,7 +35,7 @@ func (gc *GameCache) Create(c echo.Context) error {
 		Msgs: make(map[string]chan string),
 	}
 	gc.Games[gameID] = game
-	return c.String(http.StatusCreated, fmt.Sprintf("game with id %s created", gameID))
+	return c.String(http.StatusCreated, gameID)
 }
 
 func (gc *GameCache) CreateWord(c echo.Context) error {

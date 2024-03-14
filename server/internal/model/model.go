@@ -1,5 +1,7 @@
 package model
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 type Word struct {
 	Text    string `json:"text"`
 	Checked bool   `json:"checked"`
@@ -22,6 +24,6 @@ type DBWord struct {
 }
 
 type Topic struct {
-	ID   string `json:"_id"`
-	Text string `json:"text"`
+	ID   primitive.ObjectID `json:"id" bson:"_id"`
+	Text string             `json:"text"`
 }
