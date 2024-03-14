@@ -1,0 +1,17 @@
+### Test creating a word
+POST http://localhost:1234/word
+Content-Type: application/json
+
+{
+    "text": "test",
+    "topics": ["politics", "sports"]
+}
+
+### Get all words
+GET http://localhost:1234/words
+
+### Create a topic
+POST http://localhost:1234/topic/politics
+
+### Get all topics
+GET http://localhost:1234/topics
