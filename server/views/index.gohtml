@@ -1,0 +1,44 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                spacing: {
+                    '23': '5.5rem'
+                }
+            }
+        }
+    }
+</script>
+
+<header class="flex items-center justify-between p-4">
+    <h1 class="text-xl font-bold">Simple Bingo Board</h1>
+    <p>Game ID: {{ .ID }}</p>
+    <label>
+        Join a game:
+        <input class="border border-black px-1 rounded-md" type="text" placeholder="Game ID">
+    </label>
+</header>
+
+<main class="grid place-content-center w-full h-full">
+    <div class="grid" style="
+            grid-template-rows: repeat({{ .Board.Size }}, minmax(0, 1fr));
+            grid-template-columns: repeat({{ .Board.Size }}, minmax(0, 1fr))">
+        {{ range .Board.Fields }}
+            {{ range . }}
+                <div class="grid place-content-center border border-black h-24 w-24">
+                    {{ if eq .Value "" }}
+                        <input type="text" class="w-23 bg-transparent focus:outline-0 text-center" placeholder="NONE">
+                    {{ else }}
+                        <input type="text" class="w-23 bg-transparent focus:outline-0 text-center" placeholder="{{ .Value }}">
+                    {{ end }}
+                </div>
+            {{ end }}
+        {{ end }}
+    </div>
+</main>

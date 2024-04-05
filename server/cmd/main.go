@@ -6,24 +6,26 @@ import (
 	"context"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"os"
+	"html/template"
 )
 
 func main() {
 	e := echo.New()
 
 	e.Use(middleware.Recover())
-	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format: "method=${method}, uri=${uri}, status=${status}\n",
-	}))
+	e.Use(middleware.Logger())
+	e.Renderer = &controller.Template{
+		Templates: template.Must(template.ParseGlob("views/*.gohtml")),
+	}
 
-	conn := db.Connect(os.Getenv("MONGO_USER"), os.Getenv("MONGO_PASS"))
+	conn := db.Connect()
 	defer func() {
 		if err := conn.Disconnect(context.TODO()); err != nil {
 			panic(err)
 		}
 	}()
 	gc := controller.NewGameController(conn)
+	html := controller.NewHTMLController()
 
 	e.GET("/join/:id", gc.Game)
 	e.POST("/create", gc.Create)
@@ -31,6 +33,8 @@ func main() {
 	e.DELETE("/word/:word", gc.DeleteWord)
 	e.GET("/topics", gc.ListTopics)
 	e.GET("/words", gc.ListWords)
+
+	e.GET("/", html.Home)
 
 	e.Start(":1234")
 }

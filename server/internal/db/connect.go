@@ -7,9 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func Connect(user, pass string) *mongo.Client {
-	// serverAPI := options.ServerAPI(options.ServerAPIVersion1)
-	// conn := fmt.Sprintf("mongodb+srv://%s:%s@bingo.upejgm6.mongodb.net/?retryWrites=true&w=majority&appName=Bingo", user, pass)
+func Connect() *mongo.Client {
 	opts := options.Client().ApplyURI("mongodb://localhost:27017")
 	client, err := mongo.Connect(context.TODO(), opts)
 	if err != nil {
